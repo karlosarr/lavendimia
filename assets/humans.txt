@@ -1,0 +1,29 @@
+                            
+/* TEAM */
+
+                            
+Programador: Carlos Adolfo Ruiz Rodríguez.
+
+                            
+Site: karlosarr@gmail.com
+
+                            
+Twitter: karlosarr@gmail.com
+
+                            
+Location: Mazatlán, Sinaloa, México
+
+                           
+/* SITE */
+
+                            
+Last update: 2017-01-30
+
+                            
+Standards: HTML5, CSS3, bootstrap
+
+                            
+Components: bootstrap, jQuery, codeigniter.
+
+                            
+Software: netbeans
