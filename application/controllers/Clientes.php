@@ -1,4 +1,5 @@
 <?php
+
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*
@@ -28,12 +29,78 @@ class Clientes extends CI_Controller {
         $this->load->view('template/footer');
     }
 
-    public function setCliente() {
-        
+    public function agregar() {
+
+        $ultimoRegistro = $this->clientes_model->ultimoRegistro();
+        $idclientes = sprintf('%04d', $ultimoRegistro[0]->idclientes + 1);
+        $data["codigo"] = $idclientes;
+        $this->load->view('template/header');
+        $this->load->view('clientes_agregar', $data);
+        $this->load->view('template/footer');
     }
 
-    public function gsetCliente() {
-        
+    public function add() {
+        $this->form_validation->set_rules('nombre', 'Nombre', 'required', array('required' => 'Campo requerido %s.')
+        );
+        $this->form_validation->set_rules('apellido_parterno', 'Apellido Paterno', 'required', array('required' => 'Campo requerido %s.')
+        );
+        $this->form_validation->set_rules('apellido_materno', 'Apellido Materno', 'required', array('required' => 'Campo requerido %s.')
+        );
+        $this->form_validation->set_rules('rfc', 'RFC', 'required', array('required' => 'Campo requerido %s.')
+        );
+        if ($this->form_validation->run() == FALSE) {
+            $this->agregar();
+        } else {
+            $cliente = $this->input->post();
+            $this->clientes_model->setCliente($cliente);
+            $this->index();
+        }
+    }
+
+    public function editar() {
+        $ultimoRegistro = $this->clientes_model->ultimoRegistro();
+        $data["codigo"] = sprintf('%04d', $ultimoRegistro[0]->idclientes);
+        $idClientes = $this->input->get();
+
+        $articulo = $this->clientes_model->getCliente($idClientes['idclientes']);
+        $data["cliente"] = $articulo;
+        $this->load->view('template/header');
+        $this->load->view('clientes_editar', $data);
+        $this->load->view('template/footer');
+    }
+
+    public function update() {
+        $this->form_validation->set_rules('nombre', 'Nombre', 'required', array('required' => 'Campo requerido %s.')
+        );
+        $this->form_validation->set_rules('apellido_parterno', 'Apellido Paterno', 'required', array('required' => 'Campo requerido %s.')
+        );
+        $this->form_validation->set_rules('apellido_materno', 'Apellido Materno', 'required', array('required' => 'Campo requerido %s.')
+        );
+        $this->form_validation->set_rules('rfc', 'RFC', 'required', array('required' => 'Campo requerido %s.')
+        );
+        if ($this->form_validation->run() == FALSE) {
+            $this->editar();
+        } else {
+            $articulo = $this->input->post();
+            $this->clientes_model->update($articulo);
+            $this->index();
+        }
+    }
+
+    public function show() {
+        $clientes = $this->clientes_model->getClientes();
+        $clientesJson = array();
+        foreach ($clientes as $key => $value) {
+            $editar = "<a href=\"clientes/editar?idclientes=$value->idclientes\" class=\"glyphicon glyphicon-pencil\"></a>";
+            $idarticulos = sprintf('%04d', $value->idclientes);
+            $nombre = "$value->nombre $value->apellido_parterno $value->apellido_materno";
+            $clientesJson[$key] = array(
+                'idclientes' => $idarticulos,
+                'nombre' => $nombre,
+                'editar' => "$editar"
+            );
+        }
+        echo json_encode($clientesJson);
     }
 
 }
