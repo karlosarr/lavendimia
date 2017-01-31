@@ -102,5 +102,20 @@ class Clientes extends CI_Controller {
         }
         echo json_encode($clientesJson);
     }
+    
+    public function buscar() {
+        $nombre = $this->input->get();
+        $clientes = $this->clientes_model->buscarCliente($nombre['query']);
+        $clientesJson = array();
+        foreach ($clientes as $key => $value) {
+            $nombre = "$value->nombre $value->apellido_parterno $value->apellido_materno - $value->rfc";
+            $clientesJson[$key] = array(
+                'id' => $value->idclientes,
+                'label' => $nombre,
+		'rfc' => $value->rfc
+            );
+        }
+        echo json_encode($clientesJson);
+    }
 
 }

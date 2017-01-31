@@ -56,9 +56,19 @@ class Articulos_model extends CI_Model {
             'modelo' => $articulo['modelo'],
             'precio' => $articulo['precio'],
             'existencia' => $articulo['existencia']
-                );
+        );
         $this->db->where('idconfiguraciones', $articulo['idarticulos']);
         $this->db->update('articulos', $acticuloEditar);
+    }
+
+    public function buscar($descripcion) {
+        $this->db->select('idarticulos, descripcion, modelo, precio, existencia');
+        $this->db->from('articulos');
+        $this->db->or_like('descripcion', $descripcion);
+        $this->db->or_like('modelo', $descripcion);
+        $consulta = $this->db->get();
+        $resultado = $consulta->result();
+        return $resultado;
     }
 
 }

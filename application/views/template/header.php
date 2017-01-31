@@ -15,17 +15,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <?= link_tag('assets/humans.txt', 'autor', ''); ?>
 
         <?= link_tag('assets/js/bootstrap/css/bootstrap.min.css'); ?>
+		<?= link_tag('assets/js/bootstrap/css/bootstrap-theme.min.css'); ?>
 
-        <?= link_tag('assets/css/style.css'); ?>
         
         <?= link_tag('assets/js/jqgrid/css/ui.jqgrid-bootstrap-ui.css'); ?>
+		
+		<?= link_tag('assets/js/jquery/jquery-ui.min.css'); ?>
+		<?= link_tag('assets/js/jquery/jquery-ui.theme.css'); ?>
+		
+		<?= link_tag('assets/css/style.css'); ?>
 
         <?= script_tag('assets/js/jquery/jquery.min.js'); ?>
         <?= script_tag('assets/js/bootstrap/js/bootstrap.min.js'); ?>
+		
+		<!--<?= script_tag('assets/js/bootstrap/js/jquery.mockjax.js'); ?>
+        <?= script_tag('assets/js/bootstrap/js/bootstrap-typeahead.min.js'); ?>-->
         
         <?= script_tag('assets/js/jqgrid/js/i18n/grid.locale-es.js'); ?>
         <?= script_tag('assets/js/jqgrid/js/jquery.jqGrid.min.js'); ?>
-        
+       		
+		<?= script_tag('assets/js/jquery/jquery-ui.min.js'); ?>
+		
         <?= script_tag('assets/js/script.js'); ?>
 
     </head>

@@ -7,6 +7,7 @@ class Articulos extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('articulos_model');
+        $this->load->model('configuracion_model');
         $this->load->helper('url');
         $this->load->database('default');
         $this->load->library('form_validation');
@@ -47,14 +48,15 @@ class Articulos extends CI_Controller {
     public function editar() {
         $ultimoRegistro = $this->articulos_model->ultimoRegistro();
         $data["codigo"] = sprintf('%04d', $ultimoRegistro[0]->idarticulos);
-         $idArticulo = $this->input->get();
+        $idArticulo = $this->input->get();
 
-        $articulo = $this->clientes_model->getCliente($idArticulo['idarticulos']);
+        $articulo = $this->articulos_model->getArticulo($idArticulo['idarticulos']);
         $data["articulo"] = $articulo;
         $this->load->view('template/header');
-        $this->load->view('clientes_editar', $data);
+        $this->load->view('articulos_editar', $data);
         $this->load->view('template/footer');
     }
+
     public function update() {
         $this->form_validation->set_rules('nombre', 'Nombre', 'required', array('required' => 'Campo requerido %s.')
         );
@@ -72,6 +74,7 @@ class Articulos extends CI_Controller {
             $this->index();
         }
     }
+
     public function show() {
         $articulos = $this->articulos_model->getArticulos();
         $articulosJson = array();
@@ -87,4 +90,24 @@ class Articulos extends CI_Controller {
         echo json_encode($articulosJson);
     }
 
+    public function buscar() {
+        $get = $this->input->get();
+        $rows = $this->articulos_model->buscar($get['query']);
+        $configuracion = $this->configuracion_model->getConfiguracion();
+        $configuracion = $configuracion[0];
+        $precio = 0;
+        $json = array();
+        foreach ($rows as $key => $value) {
+            $precio = $value->precio * (1 + ($configuracion->tasa_financiamiento * $configuracion->plazo_maximo) / 100);
+            $json[$key] = array(
+                'id' => $value->idarticulos,
+                'label' => $value->descripcion,
+                'modelo' => $value->modelo,
+                'precio' => $precio,
+                'existencia' => $value->existencia
+            );
+        }
+        echo json_encode($json);
+    }
+    
 }

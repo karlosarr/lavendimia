@@ -59,4 +59,15 @@ class Clientes_model extends CI_Model {
         $this->db->update('clientes', $acticuloEditar);
     }
 
+    public function buscarCliente($nombre) {
+        $this->db->select('idclientes, nombre, apellido_parterno, apellido_materno, rfc');
+        $this->db->from('clientes');
+        $this->db->or_like('nombre', $nombre);
+        $this->db->or_like('apellido_parterno', $nombre);
+        $this->db->or_like('apellido_materno', $nombre);
+        $consulta = $this->db->get();
+        $resultado = $consulta->result();
+        return $resultado;
+    }
+
 }
