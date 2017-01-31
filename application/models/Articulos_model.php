@@ -42,4 +42,23 @@ class Articulos_model extends CI_Model {
         $this->db->insert('articulos', $articulo);
     }
 
+    public function ultimoRegistro() {
+        $this->db->select_max('idarticulos');
+        $this->db->from('articulos');
+        $consulta = $this->db->get();
+        $resultado = $consulta->result();
+        return $resultado;
+    }
+
+    public function update($articulo) {
+        $acticuloEditar = array(
+            'descripcion' => $articulo['descripcion'],
+            'modelo' => $articulo['modelo'],
+            'precio' => $articulo['precio'],
+            'existencia' => $articulo['existencia']
+                );
+        $this->db->where('idconfiguraciones', $articulo['idarticulos']);
+        $this->db->update('articulos', $acticuloEditar);
+    }
+
 }
