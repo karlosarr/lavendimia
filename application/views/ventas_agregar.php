@@ -17,7 +17,7 @@ echo script_tag('assets/js/ventas.js');
     <div class="col-md-4"></div>
     <div class="col-md-4"><p class=".codigo">Codigo: <?= $codigo ?></p></div>
 </div>
-<form action="<?= base_url() ?>index.php/venta/add" role="form" method="post">
+<form action="/venta/add" role="form" method="post">
     <div class="row">
         <div class="col-md-6">
             <div id="form-group">

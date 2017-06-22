@@ -12,13 +12,13 @@ Twitter: karlosarr@gmail.com
 
                             
 Location: Mazatlán, Sinaloa, México
-
+ 
                            
 /* SITE */
 
                             
 Last update: 2017-01-30
-
+Last update: 2017-01¿6-18
                             
 Standards: HTML5, CSS3, bootstrap
 
@@ -26,4 +26,4 @@ Standards: HTML5, CSS3, bootstrap
 Components: bootstrap, jQuery, codeigniter.
 
                             
-Software: netbeans
+Software: visual code

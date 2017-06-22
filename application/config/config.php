@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+ 
 /*
 |--------------------------------------------------------------------------
 | Base Site URL
@@ -35,7 +35,7 @@ $config['base_url'] = 'http://carlosruiz2.esy.es/';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------

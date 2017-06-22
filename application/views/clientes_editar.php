@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <?php
 echo script_tag('assets/js/clientes.js');
 ?>
-<form action="<?= base_url() ?>index.php/clientes/update" role="form" method="post">
+<form action="/clientes/update" role="form" method="post">
     <p class="bg-danger"><?= validation_errors(); ?></p>
     <p class="bg-info">Codigo: <?= $codigo ?></p>
     <div class="form-group">

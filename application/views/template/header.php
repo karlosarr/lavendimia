@@ -61,18 +61,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Inicio<strong class="caret"></strong></a>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a href="<?=  base_url() ?>index.php/ventas/">Ventas</a>
+                                            <a href="/ventas/">Ventas</a>
                                         </li>
                                         <li class="divider">
                                         </li>
                                         <li>
-                                            <a href="<?=  base_url() ?>index.php/clientes">Clientes</a>
+                                            <a href="/clientes">Clientes</a>
                                         </li>
                                         <li>
-                                            <a href="<?=  base_url() ?>index.php/articulos">Articulos</a>
+                                            <a href="/articulos">Articulos</a>
                                         </li>
                                         <li>
-                                            <a href="<?=  base_url() ?>index.php/configuracion">Configuración</a>
+                                            <a href="/configuracion">Configuración</a>
                                         </li>
                                     </ul>
                                 </li>

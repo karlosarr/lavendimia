@@ -66,10 +66,34 @@ class Ventas extends CI_Controller {
         return $configuracion[0];
     }
 
-    public function add() {
+    /*public function add() {
         $post = $this->input->post();
         $this->ventas_model->guardarVenta($post);
-        $this->index();
+        $ultimoRegistro = $this->ventas_model->ultimoRegistro();
+        $data = array(
+            'ultimoRegistro' => $ultimoRegistro
+        );
+        $json[$key] = array(
+                'error' => 0,
+                'mensaje' => "",
+                'data' => $ultimoRegistro
+            );
+        echo json_encode($json);
     }
+
+    public function addDetalles() {
+        $post = $this->input->post();
+        $this->ventas_model->guardarVenta($post);
+        $ultimoRegistro = $this->ventas_model->ultimoRegistro();
+        $data = array(
+            'ultimoRegistro' => $ultimoRegistro
+        );
+        $json[$key] = array(
+                'error' => 0,
+                'mensaje' => "",
+                'data' => $ultimoRegistro
+            );
+        echo json_encode($json);
+    }*/
 
 }

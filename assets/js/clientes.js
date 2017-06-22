@@ -2,7 +2,7 @@ $.jgrid.defaults.width = 780;
 $(document).ready(function () {
 
     $("#jqGrid").jqGrid({
-        url: 'http://carlosruiz2.esy.es/index.php/clientes/show',
+        url: '/clientes/show',
         mtype: "POST",
         styleUI: 'Bootstrap',
         datatype: "json",

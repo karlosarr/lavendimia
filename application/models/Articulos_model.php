@@ -71,4 +71,12 @@ class Articulos_model extends CI_Model {
         return $resultado;
     }
 
+    public function editarExistencia($articulo) {
+        $acticuloEditar = array(
+            'existencia' => $articulo['existencia']
+        );
+        $this->db->where('idconfiguraciones', $articulo['idarticulos']);
+        $this->db->update('articulos', $acticuloEditar);
+    }
+
 }

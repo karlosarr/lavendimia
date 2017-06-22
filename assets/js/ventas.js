@@ -24,7 +24,7 @@ $(document).ready(function () {
         return bRegresa;
     }
     $("#jqGrid").jqGrid({
-        url: 'http://carlosruiz2.esy.es/index.php/ventas/show',
+        url: '/ventas/show',
         mtype: "POST",
         styleUI: 'Bootstrap',
         datatype: "json",
@@ -44,9 +44,8 @@ $(document).ready(function () {
 
     $("#cliente").autocomplete({
         source: function (request, response) {
-            console.dir(request);
             $.ajax({
-                url: "http://carlosruiz2.esy.es/index.php/clientes/buscar",
+                url: "/clientes/buscar",
                 dataType: "json",
                 data: {
                     query: request.term
@@ -65,9 +64,8 @@ $(document).ready(function () {
 
     $("#articulo").autocomplete({
         source: function (request, response) {
-            console.dir(request);
             $.ajax({
-                url: "http://carlosruiz2.esy.es/index.php/articulos/buscar",
+                url: "/articulos/buscar",
                 dataType: "json",
                 data: {
                     query: request.term
@@ -207,8 +205,6 @@ $(document).ready(function () {
         var plazo = 3;
         var objPlazo = {};
         for (i = 0; i <= 3; i++) {
-
-
             objPlazo.totalPagar = Math.round((precioContado * (1 + (tasa_financiamiento * plazo) / 100)) * 100) / 100;
             $("#pagar" + plazo).html(objPlazo.totalPagar);
             objPlazo.abono = Math.round((objPlazo.totalPagar / plazo) * 100) / 100;
@@ -223,7 +219,7 @@ $(document).ready(function () {
         if ($(".meses").attr('checked', 'checked')) {
             var meses = $(".meses").val();
             $.ajax({
-                url: "http://carlosruiz2.esy.es/index.php/ventas/",
+                url: "/ventas/add",
                 dataType: "json",
                 method: "POST",
                 data: {
@@ -233,7 +229,7 @@ $(document).ready(function () {
                 success: function (data) {
                     response(data);
                     alert("Bien Hecho. El cliente ha sido registrado correctamente");
-                    window.location.href = "index.php";
+                    window.location.href = "/venta";
                 }
             });
         } else {

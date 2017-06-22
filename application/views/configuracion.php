@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
-<form action="<?= base_url() ?>index.php/configuracion/add" role="form" method="post">
+<form action="/configuracion/add" role="form" method="post">
     <p class="bg-danger"><?=validation_errors(); ?></p>
     <div class="form-group">
         <label for="tasa_financiamiento">
