@@ -112,12 +112,10 @@ $(document).ready(function () {
             {label: 'Id', name: 'id', width: 75, key: true},
             {label: 'Descripcion', name: 'descripcion', width: 90},
             {label: 'modelo', name: 'modelo', width: 90},
-            {label: 'cantidad', name: 'cantidad', width: 100, editable: true, editrules: {
-                    //custom rules
-                    custom_func: validatePositive,
-                    custom: true,
-                    required: true
-                }},
+            {label: 'cantidad', name: 'cantidad', width: 100, 
+                editable: true,
+                edittype: "text",
+            },
             {label: 'precio', name: 'precio', width: 80},
             {label: 'importe', name: 'importe', width: 80}
         ],

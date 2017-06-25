@@ -65,7 +65,9 @@ class Ventas extends CI_Controller {
         $configuracion = $this->configuracion_model->getConfiguracion();
         return $configuracion[0];
     }
-
+    public function add() {
+        
+    }
     /*public function add() {
         $post = $this->input->post();
         $this->ventas_model->guardarVenta($post);

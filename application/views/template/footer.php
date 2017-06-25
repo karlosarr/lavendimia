@@ -1,14 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
-<div class="row">
-    <div class="col-md-12">
-        <p>
-            Carlos Ruiz
-        </p>
-    </div>
-</div>
-</div>
+        </div>
+        <!-- Metis Menu Plugin JavaScript -->
+        <?= script_tag('assets/js/metisMenu/metisMenu.min.js'); ?>
 
-</body>
+        <!-- Custom Theme JavaScript -->
+        <?= script_tag('assets/js/sb-admin-2.js'); ?>
+    </body>
 </html>
