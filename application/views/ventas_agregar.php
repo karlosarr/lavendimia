@@ -9,10 +9,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <?php
 echo script_tag('assets/js/ventas.js');
 ?>
-
-<?php
-echo script_tag('assets/js/ventas.js');
-?>
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
@@ -86,8 +82,11 @@ echo script_tag('assets/js/ventas.js');
                         </div>
                         <div class="row">
                             <div class="col-md-8"></div>
-                            <div class="col-md-2"><button type="button" class="btn btn-success">Cancelar</button></div>
-                            <div class="col-md-2"><button type="button" id="btnSiguiente" class="btn btn-success">Siguiente</button><button type="button" id="btnGuardar" class="btn btn-success">Guardar</button></div>
+                            <div class="col-md-2"><button type="button" id="btnCancelar" class="btn btn-success">Cancelar</button></div>
+                            <div class="col-md-2">
+                                <button type="button" id="btnSiguiente" class="btn btn-success">Siguiente</button>
+                                <button type="button" id="btnGuardar2" class="btn btn-success">Guardar</button>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">

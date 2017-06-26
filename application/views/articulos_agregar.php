@@ -53,7 +53,7 @@ echo script_tag('assets/js/ventas.js');
                         <button type="submit" class="btn btn-default">
                             Guardar
                         </button>
-                        <button type="button" class="btn btn-default">
+                        <button type="button" id="btnCancelar" class="btn btn-default">
                             Cancelar 
                         </button>
                     </form>

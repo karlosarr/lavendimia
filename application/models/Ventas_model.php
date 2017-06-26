@@ -37,8 +37,21 @@ class Ventas_model extends CI_Model {
     }
 
     public function guardarVenta($venta) {
-        var_dump($venta);
         $this->db->insert('venta', $venta);
+    }
+
+    public function guardarDetalleVenta($idventa, $detalle) {
+        $detalleVenta = array();
+        foreach ($detalle as $key => $value) {
+            $detalleVenta = array(
+                'venta_idventa' => $idventa,
+                'articulos_idarticulos' => $value['id'],
+                'cantidad' => $value['cantidad'],
+                'importe' => $value['importe']
+            );
+            $this->db->insert('detalles_venta', $detalleVenta);
+        }
+        
     }
 
 }
