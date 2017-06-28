@@ -140,8 +140,8 @@ $(document).ready(function () {
         }
     });
 
-    $("#btnCancelar").click(function() {
-        if(confirm("¿Desea abandonar la venta?")) {
+    $("#btnCancelar").click(function () {
+        if (confirm("¿Desea abandonar la venta?")) {
             window.location.href = "/ventas";
         }
     });
@@ -166,6 +166,25 @@ $(document).ready(function () {
         height: 250,
         rowNum: 20,
         pager: "#jqGridPager"
+    });
+
+    $("#jqGridDetalles").jqGrid({
+        url: '/ventas/showDetalles?venta=' + $("#idventa").val(),
+        mtype: "POST",
+        styleUI: 'Bootstrap',
+        datatype: "json",
+        colModel: [
+            { label: 'Venta', name: 'idventa', key: true, width: 75 },
+            { label: 'Modelo', name: 'modelo', width: 300 },
+            { label: 'nombre', name: 'nombre', width: 300 },
+            { label: 'cantidad', name: 'cantidad', width: 300 },
+            { label: 'Fecha', name: 'fecha_registro', width: 300 },
+            { label: 'importe', name: 'importe', width: 300 }
+        ],
+        viewrecords: true,
+        height: 250,
+        rowNum: 20,
+        pager: "#jqGridPagerDetalles"
     });
 
     $("#cliente").autocomplete({

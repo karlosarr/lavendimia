@@ -32,6 +32,35 @@ class Ventas extends CI_Controller {
         $this->load->view('template/footer');
     }
 
+    public function detalles() {
+        $get = $this->input->get();
+        $venta = $get['venta'];
+        $data = array(
+            'idventa' => $venta
+        );
+        $this->load->view('template/header');
+        $this->load->view('ventas_detalles', $data);
+        $this->load->view('template/footer');
+    }
+
+
+    public function showDetalles() {
+        $idventa = $this->input->get('venta');
+        $ventas = $this->ventas_model->getDetallesVenta($idventa);
+        $ventasJson = array();
+        foreach ($ventas as $key => $value) {
+            $ventasJson[$key] = array(
+                'idventa' =>$value->idventa,
+                'modelo' => $value->modelo,
+                'fecha_registro' => $value->fecha_registro,
+                'nombre' => $value->nombre,
+                'cantidad' => $value->cantidad,
+                'importe' => $value->importe
+            );
+        }
+        echo json_encode($ventasJson);
+    }
+
     public function show() {
         $ventas = $this->ventas_model->getVentas();
         $ventasJson = array();

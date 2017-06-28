@@ -54,4 +54,16 @@ class Ventas_model extends CI_Model {
         
     }
 
+    public function getDetallesVenta($idventa) {
+        $this->db->select('venta.idventa, articulos.modelo, venta.fecha_registro, CONCAT_WS(\' \',clientes.nombre, clientes.apellido_parterno, clientes.apellido_materno) AS nombre, detalles_venta.cantidad, detalles_venta.importe');
+        $this->db->from('detalles_venta');
+        $this->db->join('venta', 'detalles_venta.venta_idventa = venta.idventa');
+        $this->db->join('articulos', 'articulos.idarticulos = detalles_venta.articulos_idarticulos');
+        $this->db->join('clientes', 'clientes.idclientes = venta.clientes_idclientes');
+        $this->db->where('detalles_venta.venta_idventa', $idventa);
+        $consulta = $this->db->get();
+        $resultado = $consulta->result();
+        return $resultado;
+    }
+
 }
