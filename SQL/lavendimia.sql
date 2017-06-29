@@ -1,6 +1,6 @@
 /*
 SQLyog Ultimate v11.11 (64 bit)
-MySQL - 10.0.28-MariaDB-wsrep : Database - u743864597_bd
+MySQL - 10.1.24-MariaDB : Database - u743864597_bd
 *********************************************************************
 */
 
@@ -14,6 +14,8 @@ MySQL - 10.0.28-MariaDB-wsrep : Database - u743864597_bd
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 /*Table structure for table `articulos` */
 
+DROP TABLE IF EXISTS `articulos`;
+
 CREATE TABLE `articulos` (
   `idarticulos` int(11) NOT NULL AUTO_INCREMENT,
   `descripcion` varchar(45) NOT NULL,
@@ -22,9 +24,11 @@ CREATE TABLE `articulos` (
   `existencia` int(11) NOT NULL,
   `fecha_registro` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idarticulos`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `clientes` */
+
+DROP TABLE IF EXISTS `clientes`;
 
 CREATE TABLE `clientes` (
   `idclientes` int(11) NOT NULL AUTO_INCREMENT,
@@ -35,9 +39,11 @@ CREATE TABLE `clientes` (
   `activo` tinyint(1) NOT NULL DEFAULT '1',
   `fecha_registro` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idclientes`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `configuraciones` */
+
+DROP TABLE IF EXISTS `configuraciones`;
 
 CREATE TABLE `configuraciones` (
   `idconfiguraciones` int(11) NOT NULL AUTO_INCREMENT,
@@ -46,9 +52,11 @@ CREATE TABLE `configuraciones` (
   `plazo_maximo` int(11) DEFAULT NULL,
   `fecha_actualizacion` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idconfiguraciones`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `detalles_venta` */
+
+DROP TABLE IF EXISTS `detalles_venta`;
 
 CREATE TABLE `detalles_venta` (
   `venta_idventa` int(11) NOT NULL,
@@ -62,16 +70,21 @@ CREATE TABLE `detalles_venta` (
 
 /*Table structure for table `venta` */
 
+DROP TABLE IF EXISTS `venta`;
+
 CREATE TABLE `venta` (
   `idventa` int(11) NOT NULL AUTO_INCREMENT,
   `activo` tinyint(1) DEFAULT '1',
   `clientes_idclientes` int(11) NOT NULL,
   `fecha_registro` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `total` float DEFAULT NULL,
+  `meses` int(11) DEFAULT '1',
+  `abono` float DEFAULT '0',
+  `total` float DEFAULT '0',
   `status` varchar(45) DEFAULT 'FINALIZADA',
+  `enganche` float DEFAULT '0',
   PRIMARY KEY (`idventa`),
   KEY `fk_venta_clientes1_idx` (`clientes_idclientes`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

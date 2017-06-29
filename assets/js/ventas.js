@@ -72,16 +72,9 @@ function actualizarTotal() {
     for (var key in articulos) {
         importe += articulos[key].importe;
     }
-    /*console.log(importe);
-    console.log(enganche);
-    console.log(tasa_financiamiento);
-    console.log(plazo_maximo);*/
     totalEnganche = Math.round(((enganche / 100) * importe) * 100) / 100;
     totalBonificacion = Math.round((totalEnganche * ((tasa_financiamiento * plazo_maximo) / 100)) * 100) / 100;
     totalTotal = Math.round((importe - totalEnganche - totalBonificacion) * 100) / 100;
-    /*console.log(totalEnganche);
-    console.log(totalBonificacion);
-    console.log(totalTotal);*/
     $("#totalEnganche").html(" $ " + totalEnganche);
     $("#totalBonificacion").html(" $ " + totalBonificacion);
     $("#totalTotal").html(" $ " + totalTotal);
@@ -91,8 +84,8 @@ function generarPlazos() {
 
     precioContado = Math.round((totalTotal / (1 + ((tasa_financiamiento * plazo_maximo) / 100))) * 100) / 100;
 
-    var objPlazo = {};
     for (var plazo = 3; plazo <= plazo_maximo; plazo += 3) {
+        var objPlazo = {};
         objPlazo.totalPagar = Math.round((precioContado * (1 + (tasa_financiamiento * plazo) / 100)) * 100) / 100;
         $("#pagar" + plazo).html(objPlazo.totalPagar);
         objPlazo.abono = Math.round((objPlazo.totalPagar / plazo) * 100) / 100;
@@ -106,7 +99,8 @@ $(document).ready(function () {
 
     $("#btnGuardar2").click(function () {
         if ($(".meses").attr('checked', 'checked')) {
-            var meses = $(".meses").val();
+            var meses = $( ".meses:checked" ).val();
+            var opcion = meses / 3;
             var detallesventa = [];
             for (var key in articulos) {
                 var detalle = {
@@ -120,7 +114,10 @@ $(document).ready(function () {
             var datos = {
                 venta: {
                     clientes_idclientes: $("#idcliente").val(),
-                    total: plazos[meses].totalPagar
+                    total: plazos[opcion].totalPagar,
+                    meses: (meses),
+                    abono: plazos[opcion].abono,
+                    enganche: totalEnganche
                 },
                 detallesventa: detallesventa
             };
