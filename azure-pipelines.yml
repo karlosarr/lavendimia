@@ -40,8 +40,20 @@ steps:
     -Dsonar.login=c9089194d594fb93d66feebac18f8cdf4ec9ff00
   displayName: 'Install SonarQube'
 
+
+
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    PathtoPublish: - task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      # Write your commands here
+      
+      echo 'Hello world'
+      pwd
+      ls -lsa
+      echo '$(Build.ArtifactStagingDirectory)'
+      cd $(Build.ArtifactStagingDirectory)
     ArtifactName: 'drop'
     publishLocation: 'Container'
