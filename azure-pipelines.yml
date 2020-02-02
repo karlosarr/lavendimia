@@ -32,13 +32,10 @@ steps:
     rm $HOME/.sonar/sonar-scanner.zip
     export PATH=$SONAR_SCANNER_HOME/bin:$PATH
     export SONAR_SCANNER_OPTS="-server"
-  displayName: 'Install SonarQube'
-
-- script: |
-    $SONAR_SCANNER_HOME/bin/sonar-scanner \
+    sonar-scanner \
     -Dsonar.projectKey=karlosarr_lavendimia \
     -Dsonar.organization=karlosarr \
     -Dsonar.sources=. \
     -Dsonar.host.url=https://sonarcloud.io \
     -Dsonar.login=c9089194d594fb93d66feebac18f8cdf4ec9ff00
-  displayName: 'scan with SonarQube'
+  displayName: 'Install SonarQube'
