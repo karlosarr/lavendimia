@@ -35,7 +35,7 @@ steps:
   displayName: 'Install SonarQube'
 
 - script: |
-    sonar-scanner \
+    $SONAR_SCANNER_HOME/bin/sonar-scanner \
     -Dsonar.projectKey=karlosarr_lavendimia \
     -Dsonar.organization=karlosarr \
     -Dsonar.sources=. \
