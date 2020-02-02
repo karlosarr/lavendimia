@@ -15,6 +15,11 @@ Contará con las siguientes opciones:
 + Configuración General
 + Registro de Venta
 
+Herramientas:
+--------------------
+Azure DevOps para CI/CD
+SonarQube para calidad de código
+
 URL
 --------------------
-http://carlosruiz2.esy.es/
+https://lavendimia2.herokuapp.com/
