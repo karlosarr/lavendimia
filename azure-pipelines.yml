@@ -1,0 +1,44 @@
+# PHP
+# Test and package your PHP project.
+# Add steps that run tests, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/php
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  phpVersion: 7.2
+
+steps:
+- script: |
+    sudo update-alternatives --set php /usr/bin/php$(phpVersion)
+    sudo update-alternatives --set phar /usr/bin/phar$(phpVersion)
+    sudo update-alternatives --set phpdbg /usr/bin/phpdbg$(phpVersion)
+    sudo update-alternatives --set php-cgi /usr/bin/php-cgi$(phpVersion)
+    sudo update-alternatives --set phar.phar /usr/bin/phar.phar$(phpVersion)
+    php -version
+  displayName: 'Use PHP version $(phpVersion)'
+
+- script: |
+    export SONAR_SCANNER_VERSION=4.2.0.1873
+    export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux
+    rm -rf $SONAR_SCANNER_HOME
+    mkdir -p $SONAR_SCANNER_HOME
+    curl -sSLo $HOME/.sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION-linux.zip
+    unzip $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar/
+    rm $HOME/.sonar/sonar-scanner.zip
+    export PATH=$SONAR_SCANNER_HOME/bin:$PATH
+    export SONAR_SCANNER_OPTS="-server
+  displayName: 'Install SonarQube'
+
+- script: |
+    sonar-scanner \
+    -Dsonar.projectKey=karlosarr_lavendimia \
+    -Dsonar.organization=karlosarr \
+    -Dsonar.sources=. \
+    -Dsonar.host.url=https://sonarcloud.io \
+    -Dsonar.login=c9089194d594fb93d66feebac18f8cdf4ec9ff00
+  displayName: 'scan with SonarQube'
