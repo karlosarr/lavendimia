@@ -23,6 +23,7 @@ steps:
   displayName: 'Use PHP version $(phpVersion)'
 
 - script: |
+    sudo apt-get install openjdk-8-jdk
     export SONAR_SCANNER_VERSION=4.2.0.1873
     export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux
     rm -rf $SONAR_SCANNER_HOME
