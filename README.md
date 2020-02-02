@@ -17,8 +17,8 @@ Contará con las siguientes opciones:
 
 Herramientas:
 --------------------
-Azure DevOps para CI/CD
-SonarQube para calidad de código
++ Azure DevOps para CI/CD
++ SonarQube para calidad de código
 
 URL
 --------------------
