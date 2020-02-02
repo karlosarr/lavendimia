@@ -1,6 +1,7 @@
 #Lavendimia
 ==========
 [![Build Status](https://dev.azure.com/karlosarr/lavendimia/_apis/build/status/karlosarr.lavendimia?branchName=master)](https://dev.azure.com/karlosarr/lavendimia/_build/latest?definitionId=4&branchName=master)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=karlosarr_lavendimia&metric=alert_status)](https://sonarcloud.io/dashboard?id=karlosarr_lavendimia)
 
 #Sistema La Vendimia
 
