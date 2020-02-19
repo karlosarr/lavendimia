@@ -9,7 +9,6 @@ El sistema deberá permitir la venta de muebles a crédito y administrar el regi
 
 Contará con las siguientes opciones:
 --------------------
-
 + Catálogo de Clientes
 + Catálogo de Artículos
 + Configuración General
