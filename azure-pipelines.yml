@@ -22,50 +22,40 @@ steps:
     php -version
   displayName: 'Use PHP version $(phpVersion)'
 
-#- task: Bash@3
-#  inputs:
-#    targetType: 'inline'
-#    script: |
-#      php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-#      php -r "if (hash_file('sha384', 'composer-setup.php') === 'c5b9b6d368201a9db6f74e2611495f369991b72d9c8cbd3ffbc63edff210eb73d46ffbfce88669ad33695ef77dc76976') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
-#      php composer-setup.php
-#      php -r "unlink('composer-setup.php');"
-#      composer -V
-#      composer install
-#    noRc: false
-#  displayName: 'Install Composer'
-
-#- task: Bash@3
-#  inputs:
-#    targetType: 'inline'
-#    script: |  
-#      export SONAR_SCANNER_VERSION=4.2.0.1873
-#      export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux
-#      rm -rf $SONAR_SCANNER_HOME
-#      mkdir -p $SONAR_SCANNER_HOME
-#      curl -sSLo $HOME/.sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION-linux.zip
-#      unzip $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar/
-#      rm $HOME/.sonar/sonar-scanner.zip
-#      export PATH=$SONAR_SCANNER_HOME/bin:$PATH
-#      export SONAR_SCANNER_OPTS="-server"
-#      sonar-scanner \
-#      -Dsonar.projectKey=karlosarr_lavendimia \
-#      -Dsonar.organization=karlosarr \
-#      -Dsonar.sources=. \
-#      -Dsonar.host.url=https://sonarcloud.io \
-#      -Dsonar.login=c9089194d594fb93d66feebac18f8cdf4ec9ff00
-#    noRc: false
-#  displayName: 'Install SonarQube'
-
 - task: Bash@3
   inputs:
     targetType: 'inline'
     script: |
-      echo 'Hello world'
-      pwd
-      ls -lsa
-      echo '$(Build.ArtifactStagingDirectory)'
-      cd $(Build.ArtifactStagingDirectory)
+      php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+      php -r "if (hash_file('sha384', 'composer-setup.php') === 'c5b9b6d368201a9db6f74e2611495f369991b72d9c8cbd3ffbc63edff210eb73d46ffbfce88669ad33695ef77dc76976') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+      php composer-setup.php
+      php -r "unlink('composer-setup.php');"
+      composer -V
+      composer install
+    noRc: false
+  displayName: 'Install Composer'
+
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |  
+      export SONAR_SCANNER_VERSION=4.2.0.1873
+      export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux
+      rm -rf $SONAR_SCANNER_HOME
+      mkdir -p $SONAR_SCANNER_HOME
+      curl -sSLo $HOME/.sonar/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION-linux.zip
+      unzip $HOME/.sonar/sonar-scanner.zip -d $HOME/.sonar/
+      rm $HOME/.sonar/sonar-scanner.zip
+      export PATH=$SONAR_SCANNER_HOME/bin:$PATH
+      export SONAR_SCANNER_OPTS="-server"
+      sonar-scanner \
+      -Dsonar.projectKey=karlosarr_lavendimia \
+      -Dsonar.organization=karlosarr \
+      -Dsonar.sources=. \
+      -Dsonar.host.url=https://sonarcloud.io \
+      -Dsonar.login=c9089194d594fb93d66feebac18f8cdf4ec9ff00
+    noRc: false
+  displayName: 'Install SonarQube'
 
 - task: ArchiveFiles@2
   inputs:
